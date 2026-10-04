@@ -1,0 +1,247 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --grey: #3d4047;
+  --grey-dark: #2c2e33;
+  --grey-darkest: #1f2124;
+  --grey-light: #f4f5f7;
+
+  /* Strongest fill for the current theme, and the text that sits on it */
+  --ink: light-dark(var(--grey-darkest), var(--grey-light));
+  --on-ink: light-dark(var(--grey-light), var(--grey-darkest));
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+}
+
+#title{
+  color: light-dark(var(--grey), var(--grey-light));
+  position: absolute;
+  left: 1%;
+  top: 1px;
+}
+
+#title h1{
+  color: light-dark(var(--grey), var(--grey-light))
+}
+
+#menu{
+  position: absolute;
+  right: 2%;
+  top: 25px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.menuItem {
+  position: relative;
+}
+
+.menuButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid var(--grey);
+  border-radius: 50%;
+  color: light-dark(var(--grey), var(--grey-light));
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.menuButton svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.menuButton:hover,
+.menuButton:focus-visible {
+  background: var(--grey);
+  color: var(--grey-light);
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.menuBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--on-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+
+.menuTooltip {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--on-ink);
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  pointer-events: none;
+}
+
+/* Small arrow pointing up at the icon */
+.menuTooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 15px;
+  border: 6px solid transparent;
+  border-bottom-color: var(--ink);
+}
+
+.menuItem:hover .menuTooltip,
+.menuItem:focus-within .menuTooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+}
+
+.comicList {
+  width: 95vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 24px 2%;
+  justify-items: center;
+  margin-top: 145px;
+}
+
+.comicRow {
+  display: flex;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  width: 150px;
+}
+
+.comic {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin: 0 7px;
+}
+
+.comicList p {
+  font-size: 15px;
+  text-align: center;
+  margin: 1px 0px 4px;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+  width: 150px;
+}
+
+.toolbarButton {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 7px 0;
+  border: 1.5px solid var(--grey);
+  border-radius: 999px;
+  background: var(--grey);
+  color: var(--grey-light);
+  font: 600 12px system-ui, 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.toolbarButton svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.toolbarButton:hover {
+  background: var(--grey-dark);
+  border-color: var(--grey-dark);
+}
+
+.toolbarButton:active {
+  transform: scale(0.94);
+}
+
+.toolbarButton:focus-visible {
+  outline: 2px solid var(--grey-light);
+  outline-offset: 2px;
+}
+
+.wishlistButton {
+  background: transparent;
+  border-color: light-dark(var(--grey), var(--grey-light));
+  color: light-dark(var(--grey), var(--grey-light));
+}
+
+.wishlistButton:hover {
+  background: var(--grey);
+  color: var(--grey-light);
+}
+
+.wishlistButton:hover svg {
+  fill: currentColor;
+}
+
+.toolbarButton.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+}
+
+.wishlistButton.active {
+  background: light-dark(var(--grey), var(--grey-light));
+  border-color: light-dark(var(--grey), var(--grey-light));
+  color: light-dark(var(--grey-light), var(--grey-darkest));
+}
+
+.wishlistButton.active svg {
+  fill: currentColor;
+}
+
+#information{
+  border-style:solid;
+  background-color: var(--grey);
+  margin-top: 50px;
+  padding-left:25px;
+}
